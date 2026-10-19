@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# IDEs & Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Expo & Mobile
+.expo/
+dist/
+web-build/
+
+# Uploads & local data (except gitkeep)
+uploads/cvs/*
+!uploads/cvs/.gitkeep
+uploads/logos/*
+!uploads/logos/.gitkeep
+
+# Environment files
+.env.local
