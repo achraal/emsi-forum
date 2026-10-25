@@ -8,7 +8,8 @@ import {
     SafeAreaView,
     StatusBar,
     Modal,
-    ActivityIndicator
+    ActivityIndicator,
+    Image
 } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -60,9 +61,11 @@ export default function HomeScreen() {
             {/* Header Fixe */}
             <View style={[styles.header, { backgroundColor: colors.surface, borderBottomColor: colors.surfaceContainerHighest }]}>
                 <View style={styles.headerLeft}>
-                    <View style={[styles.logoBox, { backgroundColor: colors.primary }]}>
-                        <MaterialIcons name="school" size={22} color={colors.onPrimary} />
-                    </View>
+                    <Image
+                        source={require('../../../assets/images/screen.png')} // Ajuste le chemin selon ton dossier
+                        style={styles.headerLogo}
+                        resizeMode="contain"
+                    />
                     <View style={styles.headerTitleCol}>
                         <Text style={[styles.headerCategory, { color: colors.secondary }]}>
                             Forum Entreprises EMSI
@@ -131,7 +134,7 @@ export default function HomeScreen() {
 
                     <View style={styles.heroBody}>
                         <Text style={[styles.heroTitle, { color: colors.onSurface }]}>
-                            LE FORUM RECRUTEMENT <Text style={[styles.heroTitleHighlight, { color: colors.primary }]}>EMSI</Text> 2025
+                            LE FORUM RECRUTEMENT <Text style={[styles.heroTitleHighlight, { color: colors.primary }]}>EMSI</Text> 2026
                         </Text>
                         <Text style={[styles.heroSubtitle, { color: colors.onSurfaceVariant }]}>
                             12ème Édition Nationale • Plus de 1500 opportunités de stages PFE & carrières d'ingénieurs.
@@ -978,5 +981,10 @@ const styles = StyleSheet.create({
         fontSize: 12,
         textAlign: 'center',
         marginTop: 16,
+    },
+    /* Nouveau style pour le logo du header */
+    headerLogo: {
+        width: 45,
+        height: 42,
     },
 });

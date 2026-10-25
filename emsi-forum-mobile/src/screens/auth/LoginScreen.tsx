@@ -12,7 +12,8 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     ScrollView,
-    SafeAreaView
+    SafeAreaView,
+    Image
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -111,21 +112,35 @@ export default function LoginScreen({ navigation }: Props) {
                             {/* Badge Édition */}
                             <View style={styles.editionBadge}>
                                 <View style={styles.pulseDot} />
-                                <Text style={styles.editionBadgeText}>ÉDITION CARRIÈRE 2025</Text>
+                                <Text style={styles.editionBadgeText}>ÉDITION CARRIÈRE 2026</Text>
                             </View>
 
-                            {/* Block Logo EMSI */}
-                            <View style={styles.logoRow}>
-                                <View style={styles.logoBox}>
-                                    <MaterialIcons name="school" size={24} color={COLORS.onPrimary} />
-                                </View>
-                                <View style={styles.logoTextCol}>
-                                    <Text style={styles.logoTitle}>EMSI</Text>
-                                    <Text style={styles.logoSubtitle}>ÉCOLE D'INGÉNIERIE</Text>
+                            {/* Logos EMSI et Centre Carrière en haut */}
+                            {/* Nouvelle disposition des logos (Gauche / Droite) */}
+                            <View style={styles.logosMainContainer}>
+                                {/* À gauche : Logo du Forum (le nouveau) */}
+                                <Image
+                                    source={require('../../../assets/images/screen.png')} // Ajuste le nom si besoin
+                                    style={styles.leftForumLogo}
+                                    resizeMode="contain"
+                                />
+
+                                {/* À droite : Colonne avec EMSI et CC */}
+                                <View style={styles.rightLogosColumn}>
+                                    <Image
+                                        source={require('../../../assets/images/logo-emsi.png')}
+                                        style={styles.rightSmallLogo}
+                                        resizeMode="contain"
+                                    />
+                                    <Image
+                                        source={require('../../../assets/images/logo-cc.png')}
+                                        style={[styles.rightSmallLogo, { backgroundColor: 'transparent' }]}
+                                        resizeMode="contain"
+                                    />
                                 </View>
                             </View>
 
-                            <Text style={styles.mainTitle}>Forum EMSI 2025</Text>
+                            <Text style={styles.mainTitle}>Forum EMSI 2026</Text>
                             <Text style={styles.mainSubtitle}>
                                 Identifiants Campus Ingénieurs • Direction des Systèmes d'Information
                             </Text>
@@ -296,7 +311,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 6,
         borderRadius: 9999,
-        marginBottom: 16,
+        marginBottom: 8,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.05,
@@ -568,4 +583,34 @@ footerText: {
         fontSize: 12,
         color: COLORS.onSurfaceVariant,
 },
+    /* Nouveaux styles pour les logos */
+    /* Styles pour la disposition asymétrique des logos */
+    logosMainContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 24,             // Espace horizontal entre le logo gauche et la colonne droite
+        marginBottom: 16,
+        width: '100%',
+    },
+    leftForumLogo: {
+        width: 110,          // Taille du grand logo à gauche
+        height: 110,
+    },
+    rightLogosColumn: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start', // Aligne les petits logos à gauche de leur propre colonne
+        gap: 16,             // Espace vertical entre le logo EMSI et le logo CC
+    },
+    rightSmallLogo: {
+        width: 85,           // Taille des petits logos à droite
+        height: 40,
+    },
+
+    centralForumLogo: {
+        width: 150,
+        height: 100,
+        marginBottom: -5,     // <-- Laisse un petit espace avant le texte "Forum EMSI 2026"
+    },
 });

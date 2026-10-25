@@ -12,7 +12,8 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     ScrollView,
-    SafeAreaView
+    SafeAreaView,
+    Image
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -158,16 +159,29 @@ export default function SignupScreen({ navigation }: Props) {
                                 <Text style={styles.editionBadgeText}>COMPTE ÉTUDIANT EMSI</Text>
                             </View>
 
-                            <View style={styles.logoRow}>
-                                <View style={styles.logoBox}>
-                                    <MaterialIcons name="school" size={24} color={COLORS.onPrimary} />
-                                </View>
-                                <View style={styles.logoTextCol}>
-                                    <Text style={styles.logoTitle}>EMSI</Text>
-                                    <Text style={styles.logoSubtitle}>ÉCOLE D'INGÉNIERIE</Text>
+                            {/* Nouvelle disposition des logos (Gauche / Droite) */}
+                            <View style={styles.logosMainContainer}>
+                                {/* À gauche : Logo du Forum */}
+                                <Image
+                                    source={require('../../../assets/images/screen.png')} // Ajuste le chemin si besoin
+                                    style={styles.leftForumLogo}
+                                    resizeMode="contain"
+                                />
+
+                                {/* À droite : Colonne avec EMSI et CC */}
+                                <View style={styles.rightLogosColumn}>
+                                    <Image
+                                        source={require('../../../assets/images/logo-emsi.png')} // Ajuste le chemin si besoin
+                                        style={styles.rightSmallLogo}
+                                        resizeMode="contain"
+                                    />
+                                    <Image
+                                        source={require('../../../assets/images/logo-cc.png')} // Ajuste le chemin si besoin
+                                        style={[styles.rightSmallLogo, { backgroundColor: 'transparent' }]}
+                                        resizeMode="contain"
+                                    />
                                 </View>
                             </View>
-
                             <Text style={styles.mainTitle}>Créer un compte</Text>
                             <Text style={styles.mainSubtitle}>
                                 Inscrivez-vous pour accéder au Forum Entreprises & déposer votre CV
@@ -608,5 +622,28 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter-Regular',
         fontSize: 12,
         color: COLORS.onSurfaceVariant,
+    },
+    /* Styles pour la disposition asymétrique des logos */
+    logosMainContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 24,
+        marginBottom: 16,
+        width: '100%',
+    },
+    leftForumLogo: {
+        width: 110,
+        height: 110,
+    },
+    rightLogosColumn: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        gap: 16,
+    },
+    rightSmallLogo: {
+        width: 85,
+        height: 40,
     },
 });
